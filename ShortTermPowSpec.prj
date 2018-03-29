@@ -1,0 +1,97 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="1325304180" file="C:\Users\User\Documents\MATLAB\SCSE17038 STPT Comparison App\ShortTermPowSpec.prj" location="C:\Users\User\Documents\MATLAB\SCSE17038 STPT Comparison App" name="ShortTermPowSpec" target="target.mlapps" target-name="Package App">
+    <param.appname>ShortTermPowSpec</param.appname>
+    <param.authnamewatermark>Hans Albert Lianto</param.authnamewatermark>
+    <param.email>lianto.albert28@gmail.com</param.email>
+    <param.company>Nanyang Technological University</param.company>
+    <param.icon />
+    <param.icons />
+    <param.summary>An app that enables one to compare the short-term power spectrums of two structurally similar but temporally different voice recordings.</param.summary>
+    <param.description>Uses MATLAB App Designer from MATLAB 2017b.
+
+Uses dynamic time warping of several features to achieve temporal aligning of target wave file to source wave file.
+
+Enables comparison.
+
+Can be used for analysis and research.</param.description>
+    <param.screenshot>C:\Users\User\AppData\Local\Temp\tp2c8c9e75_47a3_4893_8051_7d4ffc40cc9c.png</param.screenshot>
+    <param.version>1.0</param.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.output>C:\Users\User\Documents\MATLAB\SCSE17038 STPT Comparison App</param.output>
+    <param.guid>23f91118-4316-4cd0-be14-a9c3f802f460</param.guid>
+    <unset>
+      <param.icon />
+      <param.icons />
+      <param.version />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+      <param.output />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\scse17038_stps_comparison.mlapp</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\dur_alignment_f.m</file>
+      <file>${PROJECT_ROOT}\lib\DTW\DynamicTimeWarping.m</file>
+      <file>${PROJECT_ROOT}\lib\fbank\fft2melmx.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\aperiodiccomp.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\aperiodicpartERB2.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\boundmes2.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\correctdpv.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\exstraightsource.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\exstraightspec.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\exstraightsynth.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\f0track5.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\fixpF0VexMltpBG4.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\fractpitch2.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\HzToErbRate.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\multanalytFineCSPB.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\optimumsmoothing.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\refineF06.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\smax.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\specreshape.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\straightBodyC03ma.m</file>
+      <file>${PROJECT_ROOT}\lib\STRAIGHTV40_007d_512\straightSynthTB07ca.m</file>
+      <file>${PROJECT_ROOT}\Processing\audspec.m</file>
+      <file>${PROJECT_ROOT}\Processing\dolpc.m</file>
+      <file>${PROJECT_ROOT}\Processing\fft2barkmx.m</file>
+      <file>${PROJECT_ROOT}\Processing\hz2bark.m</file>
+      <file>${PROJECT_ROOT}\Processing\lifter.m</file>
+      <file>${PROJECT_ROOT}\Processing\lpc2cep.m</file>
+      <file>${PROJECT_ROOT}\Processing\melfcc.m</file>
+      <file>${PROJECT_ROOT}\Processing\powspec.m</file>
+      <file>${PROJECT_ROOT}\Processing\process_options.m</file>
+      <file>${PROJECT_ROOT}\Processing\spec2cep.m</file>
+    </fileset.depfun>
+    <fileset.resources />
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\Users\User\Documents\MATLAB" name="SCSE17038 STPT Comparison App" optional="false">C:\Users\User\Documents\MATLAB\SCSE17038 STPT Comparison App</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>D:\Program Files\MATLAB\R2017b</root>
+      <toolboxes />
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

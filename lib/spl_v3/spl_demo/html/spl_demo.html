@@ -1,0 +1,266 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>spl</title><meta name="generator" content="MATLAB 8.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-05-06"><meta name="DC.source" content="spl_demo.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>spl</h1><!--introduction--><p><tt>spl</tt> returns sound pressure level in decibels for an input signal <tt>p_Pa</tt> in pascals.  A reference pressure <tt>ref</tt> must be declared in units of pascals or specified as <tt>'air'</tt> or <tt>'water'</tt> to use standard reference pressures for those media.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Description</a></li><li><a href="#3">Example 1: SPL of laughter.</a></li><li><a href="#6">Example 2: Moving window.</a></li><li><a href="#8">Example 3: Accounting for microphone dynamics.</a></li><li><a href="#9">Author Info</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>spl_dB  = spl(p_Pa,ref)
+spl_dB  = spl(p_Pa,ref,windowSize)
+spl_dB  = spl(p_Pa,ref,windowSize,Fs)</pre><h2>Description<a name="2"></a></h2><p><tt>spl_dB  = spl(p_Pa,ref)</tt> returns sound pressure level in decibels referenced to reference pressure <tt>ref</tt> in pascals. This usage returns a scalar value of spl_dB for the entire p_Pa signal.</p><p><tt>spl_dB  = spl(p_Pa,ref,windowSize)</tt> returns a moving SPL calculation along the window size specified by <tt>windowSize</tt>, where the units of <tt>windowSize</tt> are number of time indicies.</p><p><tt>spl_dB  = spl(p_Pa,ref,windowSize,Fs)</tt> returns a moving SPL, where <tt>windowSize</tt> is not indices of time, but _units_of time equivalent to units of <tt>1/Fs</tt>.</p><h2>Example 1: SPL of laughter.<a name="3"></a></h2><p>Here we'll use the built-in <tt>laughter</tt> file and calculate a sound pressure level for the whole thing.  Let's assume the units of <tt>y</tt> are in pascals and we'll use 20 uPa as the reference pressure. Turn on your speakers if you'd like to hear the audio signals we're analyzing.</p><pre class="codeinput">load <span class="string">laughter</span>
+sound(y,Fs)
+SPL = spl(y,20e-6)
+</pre><pre class="codeoutput">
+SPL =
+
+   78.1283
+
+</pre><p>That laughter is about 78 dB re: 20 {\mu}Pa. In case you can't remember the standard reference pressure for air, you could just as easily have typed</p><pre class="codeinput">SPL = spl(y,<span class="string">'air'</span>)
+</pre><pre class="codeoutput">
+SPL =
+
+   78.1283
+
+</pre><p>and that's the same answer as specifying the reference pressure in pascals.</p><h2>Example 2: Moving window.<a name="6"></a></h2><p>Calculating the SPL of an entire signal is not terribly informative. You may wish to use a moving window for the calculation.  First we specify the moving window in terms of the number of samples:</p><pre class="codeinput">load <span class="string">train</span>
+sound(y,Fs)
+
+SPL = spl(y,<span class="string">'air'</span>,501); <span class="comment">% where 501 is the number of samples in the moving window.</span>
+
+t = cumsum(ones(size(y))/Fs); <span class="comment">% time vector</span>
+figure
+subplot(2,1,1)
+plot(t,y)
+axis <span class="string">tight</span>
+ylabel(<span class="string">'pressure (Pa)'</span>)
+
+subplot(2,1,2)
+plot(t,SPL)
+axis <span class="string">tight</span>
+ylabel(<span class="string">'spl (dB)'</span>)
+xlabel(<span class="string">'time (s)'</span>)
+</pre><img vspace="5" hspace="5" src="spl_demo_01.png" alt=""> <p>We can alternatively specify the moving window <tt>windowSize</tt> in units of time if we include the sampling frequency <tt>Fs</tt>.</p><pre class="codeinput">load <span class="string">train</span>
+SPL = spl(y,<span class="string">'air'</span>,0.010,Fs);
+
+t = cumsum(ones(size(y))/Fs);
+
+figure
+subplot(2,1,1)
+plot(t,y)
+axis <span class="string">tight</span>
+ylabel(<span class="string">'pressure (Pa)'</span>)
+
+subplot(2,1,2)
+plot(t,SPL)
+axis <span class="string">tight</span>
+ylabel(<span class="string">'spl (dB)'</span>)
+xlabel(<span class="string">'time (s)'</span>)
+</pre><img vspace="5" hspace="5" src="spl_demo_02.png" alt=""> <h2>Example 3: Accounting for microphone dynamics.<a name="8"></a></h2><p>In the examples above, we've assumed that the recorded signal <tt>y</tt> is in units of pascals. However, an experimentalist is more likely to record voltages.  If your signal is in units of volts or millivolts, the following approach may be more appropriate.</p><pre class="codeinput">load <span class="string">handel</span>
+sound(y,Fs)
+
+y;                               <span class="comment">% (mV) recorded signal in millivolts.</span>
+Fs;                              <span class="comment">% (Hz) sampling frequency.</span>
+t = 0:1/Fs:(length(y)-1)/Fs;     <span class="comment">% time vector.</span>
+S = 14.1;                        <span class="comment">% (V/mPa) microphone sensitivity.</span>
+p_Pa = y/S;                      <span class="comment">% (Pa) recorded signal in pascals, assuming y is in mV.</span>
+spl_dB = spl(p_Pa,<span class="string">'air'</span>,.25,Fs); <span class="comment">% this calculation specifies 1/4 second windowSize.</span>
+
+
+figure
+subplot(2,1,1)
+plot(t,p_Pa)
+box <span class="string">off</span>; axis <span class="string">tight</span>;
+ylabel(<span class="string">'measured pressure (Pa)'</span>)
+
+subplot(2,1,2)
+plot(t,spl_dB)
+box <span class="string">off</span>; axis <span class="string">tight</span>;
+xlabel(<span class="string">'time (s)'</span>)
+ylabel(<span class="string">'SPL (dB re 20 {\mu}Pa)'</span>)
+</pre><img vspace="5" hspace="5" src="spl_demo_03.png" alt=""> <h2>Author Info<a name="9"></a></h2><p>This function was written by Chad A. Greene in 2012, updated 2014.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2012b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% spl
+% |spl| returns sound pressure level in decibels for an input signal |p_Pa|
+% in pascals.  A reference pressure |ref| must be declared in units of
+% pascals or specified as |'air'| or |'water'| to use standard reference
+% pressures for those media. 
+
+%% Syntax
+% 
+%  spl_dB  = spl(p_Pa,ref)
+%  spl_dB  = spl(p_Pa,ref,windowSize)
+%  spl_dB  = spl(p_Pa,ref,windowSize,Fs)
+
+%% Description  
+%  
+% |spl_dB  = spl(p_Pa,ref)| returns sound pressure level in decibels
+% referenced to reference pressure |ref| in pascals. This usage returns a
+% scalar value of spl_dB for the entire p_Pa signal. 
+% 
+% |spl_dB  = spl(p_Pa,ref,windowSize)| returns a moving SPL calculation
+% along the window size specified by |windowSize|, where the units of
+% |windowSize| are number of time indicies. 
+% 
+% |spl_dB  = spl(p_Pa,ref,windowSize,Fs)| returns a moving SPL, where
+% |windowSize| is not indices of time, but _units_of time equivalent to
+% units of |1/Fs|. 
+
+%% Example 1: SPL of laughter. 
+% Here we'll use the built-in |laughter| file and calculate a sound
+% pressure level for the whole thing.  Let's assume the units of |y| are in
+% pascals and we'll use 20 uPa as the reference pressure. Turn on your
+% speakers if you'd like to hear the audio signals we're analyzing. 
+
+load laughter 
+sound(y,Fs) 
+SPL = spl(y,20e-6)
+
+%% 
+% That laughter is about 78 dB re: 20 {\mu}Pa. In case you can't remember
+% the standard reference pressure for air, you could just as easily have
+% typed
+
+SPL = spl(y,'air') 
+
+%% 
+% and that's the same answer as specifying the reference pressure in pascals.  
+
+%% Example 2: Moving window. 
+% Calculating the SPL of an entire signal is not terribly informative. You
+% may wish to use a moving window for the calculation.  First we specify
+% the moving window in terms of the number of samples: 
+
+load train
+sound(y,Fs) 
+
+SPL = spl(y,'air',501); % where 501 is the number of samples in the moving window. 
+ 
+t = cumsum(ones(size(y))/Fs); % time vector
+figure
+subplot(2,1,1)
+plot(t,y)
+axis tight
+ylabel('pressure (Pa)')
+
+subplot(2,1,2)
+plot(t,SPL)
+axis tight
+ylabel('spl (dB)')
+xlabel('time (s)')
+
+%% 
+% We can alternatively specify the moving window |windowSize| in units of
+% time if we include the sampling frequency |Fs|. 
+
+load train 
+SPL = spl(y,'air',0.010,Fs);
+ 
+t = cumsum(ones(size(y))/Fs);
+
+figure
+subplot(2,1,1)
+plot(t,y)
+axis tight
+ylabel('pressure (Pa)')
+
+subplot(2,1,2)
+plot(t,SPL)
+axis tight
+ylabel('spl (dB)')
+xlabel('time (s)')
+
+
+%% Example 3: Accounting for microphone dynamics. 
+% In the examples above, we've assumed that the recorded signal |y| is in
+% units of pascals. However, an experimentalist is more likely to record
+% voltages.  If your signal is in units of volts or millivolts, the
+% following approach may be more appropriate. 
+
+load handel
+sound(y,Fs)
+
+y;                               % (mV) recorded signal in millivolts.
+Fs;                              % (Hz) sampling frequency.
+t = 0:1/Fs:(length(y)-1)/Fs;     % time vector.
+S = 14.1;                        % (V/mPa) microphone sensitivity. 
+p_Pa = y/S;                      % (Pa) recorded signal in pascals, assuming y is in mV.
+spl_dB = spl(p_Pa,'air',.25,Fs); % this calculation specifies 1/4 second windowSize.
+
+
+figure
+subplot(2,1,1)
+plot(t,p_Pa)
+box off; axis tight;
+ylabel('measured pressure (Pa)') 
+
+subplot(2,1,2) 
+plot(t,spl_dB) 
+box off; axis tight; 
+xlabel('time (s)') 
+ylabel('SPL (dB re 20 {\mu}Pa)')
+
+%% Author Info
+% This function was written by Chad A. Greene in 2012, updated 2014. 
+
+        
+##### SOURCE END #####
+--></body></html>
